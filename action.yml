@@ -1,0 +1,19 @@
+name: "Python check Action"
+author: "@Tordf"
+description: "An action to check python files"
+branding:
+  icon: "truck"
+  color: "gray-dark"
+inputs:
+  linewidth:
+    description: "The python file line width"
+    required: false
+    default: "120"
+
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        black -l ${{ inputs.linewidth }} --check .
+        isort -w ${{ inputs.linewidth }} --check .
+      shell: bash
